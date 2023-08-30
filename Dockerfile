@@ -1,6 +1,18 @@
 FROM php:8.1.6-fpm-alpine
 WORKDIR /app
 
+RUN mkdir -p /app/apps/backoffice/backend/var/cache/test \
+    && chown -R www-data:www-data /app/apps/backoffice/backend/var/cache \
+    && chmod -R 777 /app/apps/backoffice/backend/var/cache
+
+RUN mkdir -p /app/apps/backoffice/frontend/var/cache/test \
+    && chown -R www-data:www-data /app/apps/backoffice/frontend/var/cache \
+    && chmod -R 777 /app/apps/backoffice/frontend/var/cache
+
+RUN mkdir -p /app/apps/mooc/backend/var/cache/test \
+    && chown -R www-data:www-data /app/apps/mooc/backend/var/cache \
+    && chmod -R 777 /app/apps/mooc/backend/var/cache
+
 RUN wget https://github.com/FriendsOfPHP/pickle/releases/download/v0.7.9/pickle.phar \
     && mv pickle.phar /usr/local/bin/pickle \
     && chmod +x /usr/local/bin/pickle
